@@ -1,11 +1,11 @@
 [tool.setuptools]
-py-modules = ["fuzzyai"]
+py-modules = ["zynq"]
 
 [tool.poetry]
-name = "fuzzyai"
+name = "zynq"
 version = "1.0.0"
-description = "FuzzyAI is a Python library for fuzzying LLMs."
-authors = ["CyberArk <cyber@cyberark.com>"]
+description = "ZYNQ — Zero-Knowledge Intelligence Quotient (fork of FuzzyAI)"
+authors = ["You <you@example.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
@@ -51,13 +51,13 @@ pythonpath = [
 ]
 
 [tool.poetry.scripts]
-fuzzyai = "fuzzyai.cli:main"
+zynq = "zynq.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
-fuzzyai = ["../resources/*"]
+zynq = ["../resources/*"]
 
 [build-system]
 requires = ["setuptools>=40.9.0", "wheel", "poetry-core>=1.0.0"]
