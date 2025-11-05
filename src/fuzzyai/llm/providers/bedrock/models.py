@@ -3,7 +3,7 @@ from typing import Any, Literal, Optional
 
 from pydantic import BaseModel, Field
 
-from fuzzyai.consts import PARAMETER_MAX_TOKENS
+from zynq.consts import PARAMETER_MAX_TOKENS
 
 
 class CamelCaseBaseModel(BaseModel):

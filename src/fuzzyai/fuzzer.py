@@ -11,18 +11,18 @@ from uuid import uuid4
 from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseModel
 
-from fuzzyai.consts import DATETIME_FORMAT
-from fuzzyai.handlers.attacks.base import BaseAttackTechniqueHandler, attack_handler_fm
-from fuzzyai.handlers.attacks.enums import FuzzerAttackMode
-from fuzzyai.handlers.attacks.proto import AttackSummary, BaseAttackTechniqueHandlerProto
-from fuzzyai.handlers.classifiers.base import BaseClassifier
-from fuzzyai.handlers.db.adv_attacks import AdversarialAttacksHandler
-from fuzzyai.handlers.db.adv_prompts import AdversarialPromptDTO, AdversarialPromptsHandler
-from fuzzyai.handlers.db.adv_suffixes import AdversarialSuffixesHandler
-from fuzzyai.llm.providers.base import BaseLLMProvider
-from fuzzyai.llm.providers.enums import LLMProvider
-from fuzzyai.models.fuzzer_result import FuzzerResult
-from fuzzyai.utils.utils import llm_provider_factory
+from zynq.consts import DATETIME_FORMAT
+from zynq.handlers.attacks.base import BaseAttackTechniqueHandler, attack_handler_fm
+from zynq.handlers.attacks.enums import FuzzerAttackMode
+from zynq.handlers.attacks.proto import AttackSummary, BaseAttackTechniqueHandlerProto
+from zynq.handlers.classifiers.base import BaseClassifier
+from zynq.handlers.db.adv_attacks import AdversarialAttacksHandler
+from zynq.handlers.db.adv_prompts import AdversarialPromptDTO, AdversarialPromptsHandler
+from zynq.handlers.db.adv_suffixes import AdversarialSuffixesHandler
+from zynq.llm.providers.base import BaseLLMProvider
+from zynq.llm.providers.enums import LLMProvider
+from zynq.models.fuzzer_result import FuzzerResult
+from zynq.utils.utils import llm_provider_factory
 
 logger = logging.getLogger(__name__)
 

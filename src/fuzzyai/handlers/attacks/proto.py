@@ -1,7 +1,7 @@
 from typing import Any, Optional, Protocol
 
-from fuzzyai.handlers.attacks.models import AttackResultEntry, AttackSummary
-from fuzzyai.handlers.db.adv_prompts import AdversarialPromptDTO
+from zynq.handlers.attacks.models import AttackResultEntry, AttackSummary
+from zynq.handlers.db.adv_prompts import AdversarialPromptDTO
 
 
 class BaseAttackTechniqueHandlerProto(Protocol):

@@ -1,7 +1,7 @@
 import pytest
 
-from fuzzyai.llm.models import BaseLLMProviderResponse
-from fuzzyai.llm.providers.ollama.ollama import OllamaProvider
+from zynq.llm.models import BaseLLMProviderResponse
+from zynq.llm.providers.ollama.ollama import OllamaProvider
 
 
 @pytest.fixture

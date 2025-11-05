@@ -4,11 +4,11 @@ from typing import Any, Optional, Union
 
 import aiohttp
 
-from fuzzyai.enums import EnvironmentVariables, LLMRole
-from fuzzyai.llm.models import BaseLLMProviderResponse
-from fuzzyai.llm.providers.azure.models import AzureGenerateOptions, AzureMessage, AzureRequest
-from fuzzyai.llm.providers.base import BaseLLMMessage, BaseLLMProvider, BaseLLMProviderException, llm_provider_fm
-from fuzzyai.llm.providers.enums import LLMProvider
+from zynq.enums import EnvironmentVariables, LLMRole
+from zynq.llm.models import BaseLLMProviderResponse
+from zynq.llm.providers.azure.models import AzureGenerateOptions, AzureMessage, AzureRequest
+from zynq.llm.providers.base import BaseLLMMessage, BaseLLMProvider, BaseLLMProviderException, llm_provider_fm
+from zynq.llm.providers.enums import LLMProvider
 
 logger = logging.getLogger(__name__)
 

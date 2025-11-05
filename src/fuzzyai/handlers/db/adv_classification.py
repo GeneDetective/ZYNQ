@@ -2,8 +2,8 @@ from typing import Any
 
 import motor.motor_asyncio
 
-from fuzzyai.consts import CLASSIFICATIONS_COLLECTION_NAME, DATABASE_NAME
-from fuzzyai.db.mongodb import MongoDBHandler, MongoDocument
+from zynq.consts import CLASSIFICATIONS_COLLECTION_NAME, DATABASE_NAME
+from zynq.db.mongodb import MongoDBHandler, MongoDocument
 
 
 class AdversarialClassificationDTO(MongoDocument):

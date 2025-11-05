@@ -2,10 +2,10 @@ import logging
 import string
 from typing import TYPE_CHECKING, Any, Optional, Protocol, Union
 
-from fuzzyai.llm.models import BaseLLMProviderResponse
+from zynq.llm.models import BaseLLMProviderResponse
 
 if TYPE_CHECKING:
-    from fuzzyai.llm.providers.base import BaseLLMProvider
+    from zynq.llm.providers.base import BaseLLMProvider
 
 logger = logging.getLogger(__name__)
 

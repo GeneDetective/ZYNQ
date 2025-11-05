@@ -5,8 +5,8 @@ from uuid import uuid4
 from motor.motor_tornado import MotorClient
 from pydantic import Field
 
-from fuzzyai.consts import DATABASE_NAME, GENETIC_ATTACK_COLLECTION_NAME
-from fuzzyai.db.mongodb import MongoDBHandler, MongoDocument
+from zynq.consts import DATABASE_NAME, GENETIC_ATTACK_COLLECTION_NAME
+from zynq.db.mongodb import MongoDBHandler, MongoDocument
 
 
 class AdversarialGeneticAttackDTO(MongoDocument):

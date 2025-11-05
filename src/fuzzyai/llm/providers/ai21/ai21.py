@@ -6,13 +6,13 @@ import aiohttp
 import backoff
 import requests
 
-from fuzzyai.enums import EnvironmentVariables, LLMRole
-from fuzzyai.llm.models import BaseLLMProviderResponse
-from fuzzyai.llm.providers.ai21.models import AI21ChatRequest
-from fuzzyai.llm.providers.base import (BaseLLMMessage, BaseLLMProvider, BaseLLMProviderException,
+from zynq.enums import EnvironmentVariables, LLMRole
+from zynq.llm.models import BaseLLMProviderResponse
+from zynq.llm.providers.ai21.models import AI21ChatRequest
+from zynq.llm.providers.base import (BaseLLMMessage, BaseLLMProvider, BaseLLMProviderException,
                                         BaseLLMProviderRateLimitException, llm_provider_fm)
-from fuzzyai.llm.providers.enums import LLMProvider, LLMProviderExtraParams
-from fuzzyai.llm.providers.shared.decorators import api_endpoint
+from zynq.llm.providers.enums import LLMProvider, LLMProviderExtraParams
+from zynq.llm.providers.shared.decorators import api_endpoint
 
 logger = logging.getLogger(__name__)
 

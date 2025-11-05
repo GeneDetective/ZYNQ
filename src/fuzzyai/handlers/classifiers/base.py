@@ -4,9 +4,9 @@ import logging
 from functools import wraps
 from typing import Any, Type, TypeVar
 
-from fuzzyai.handlers.classifiers.enums import Classifier
-from fuzzyai.handlers.classifiers.utils import remove_cot, replace_nth
-from fuzzyai.utils.flavor_manager import FlavorManager, TypedFlavorManager
+from zynq.handlers.classifiers.enums import Classifier
+from zynq.handlers.classifiers.utils import remove_cot, replace_nth
+from zynq.utils.flavor_manager import FlavorManager, TypedFlavorManager
 
 KeyT = TypeVar('KeyT')
 ValT = TypeVar('ValT')

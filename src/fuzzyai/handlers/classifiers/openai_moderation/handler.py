@@ -5,8 +5,8 @@ from typing import Any
 from openai import OpenAI
 from openai.types import ModerationCreateResponse
 
-from fuzzyai.handlers.classifiers.base import BaseClassifier, classifiers_fm
-from fuzzyai.handlers.classifiers.enums import Classifier
+from zynq.handlers.classifiers.base import BaseClassifier, classifiers_fm
+from zynq.handlers.classifiers.enums import Classifier
 
 logger = logging.getLogger(__name__)
 

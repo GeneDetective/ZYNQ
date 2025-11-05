@@ -3,8 +3,8 @@ from uuid import uuid4
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from fuzzyai.db.mongodb import MongoDocument
-from fuzzyai.handlers.attacks.models import AttackSummary
+from zynq.db.mongodb import MongoDocument
+from zynq.handlers.attacks.models import AttackSummary
 
 
 class PromptEntry(BaseModel):

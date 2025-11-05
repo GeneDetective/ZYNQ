@@ -2,9 +2,9 @@ import asyncio
 import logging
 from typing import Any
 
-from fuzzyai.handlers.classifiers.base import BaseClassifier, classifiers_fm
-from fuzzyai.handlers.classifiers.enums import Classifier
-from fuzzyai.handlers.text_analyzer import LLMResponseSentimentAnalysis, ZeroShotAnalyzer
+from zynq.handlers.classifiers.base import BaseClassifier, classifiers_fm
+from zynq.handlers.classifiers.enums import Classifier
+from zynq.handlers.text_analyzer import LLMResponseSentimentAnalysis, ZeroShotAnalyzer
 
 logger = logging.getLogger(__name__)
 

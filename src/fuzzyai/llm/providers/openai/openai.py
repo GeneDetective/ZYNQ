@@ -7,14 +7,14 @@ import backoff
 import requests
 import tiktoken
 
-from fuzzyai.enums import EnvironmentVariables, LLMRole
-from fuzzyai.handlers.tokenizers.handler import TokensHandler  # type: ignore
-from fuzzyai.llm.models import BaseLLMProviderResponse
-from fuzzyai.llm.providers.base import (BaseLLMMessage, BaseLLMProvider, BaseLLMProviderException,
+from zynq.enums import EnvironmentVariables, LLMRole
+from zynq.handlers.tokenizers.handler import TokensHandler  # type: ignore
+from zynq.llm.models import BaseLLMProviderResponse
+from zynq.llm.providers.base import (BaseLLMMessage, BaseLLMProvider, BaseLLMProviderException,
                                         BaseLLMProviderRateLimitException, llm_provider_fm)
-from fuzzyai.llm.providers.enums import LLMProvider, LLMProviderExtraParams
-from fuzzyai.llm.providers.openai.models import OpenAIChatRequest
-from fuzzyai.llm.providers.shared.decorators import api_endpoint, sync_api_endpoint
+from zynq.llm.providers.enums import LLMProvider, LLMProviderExtraParams
+from zynq.llm.providers.openai.models import OpenAIChatRequest
+from zynq.llm.providers.shared.decorators import api_endpoint, sync_api_endpoint
 
 logger = logging.getLogger(__name__)
 

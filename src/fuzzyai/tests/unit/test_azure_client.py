@@ -4,7 +4,7 @@ from unittest.mock import AsyncMock
 import pytest
 from aiohttp import web
 
-from fuzzyai.llm.providers.azure.azure import AzureProvider
+from zynq.llm.providers.azure.azure import AzureProvider
 
 
 @dataclasses.dataclass

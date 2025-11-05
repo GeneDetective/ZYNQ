@@ -7,8 +7,8 @@ import pandas as pd
 import seaborn as sns
 from sklearn.metrics import confusion_matrix, precision_score, recall_score
 
-from fuzzyai.handlers.classifiers.llm_response_sentiment.handler import LLMResponseSentimentClassifier
-from fuzzyai.handlers.text_analyzer import LLMResponseSentimentAnalysis
+from zynq.handlers.classifiers.llm_response_sentiment.handler import LLMResponseSentimentClassifier
+from zynq.handlers.text_analyzer import LLMResponseSentimentAnalysis
 
 
 class NotebookUtils:

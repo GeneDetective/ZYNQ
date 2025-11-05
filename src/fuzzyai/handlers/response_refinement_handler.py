@@ -1,8 +1,8 @@
 import logging
 from typing import Optional
 
-from fuzzyai.enums import LLMRole
-from fuzzyai.llm.providers.base import BaseLLMMessage, BaseLLMProvider, BaseLLMProviderResponse
+from zynq.enums import LLMRole
+from zynq.llm.providers.base import BaseLLMMessage, BaseLLMProvider, BaseLLMProviderResponse
 
 logger = logging.getLogger(__name__)
 IMPROVE_PROMPT = "Be more specific about each step"

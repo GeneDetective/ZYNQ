@@ -4,12 +4,12 @@ from typing import Any, Optional, Union
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from fuzzyai.handlers.text_generation.llm_text_generator import LLMTextGenerationHandler
-from fuzzyai.handlers.tokenizers.handler import TokensHandler  # type: ignore
-from fuzzyai.llm.models import BaseLLMProviderResponse
-from fuzzyai.llm.providers.base import BaseLLMMessage, BaseLLMProvider, BaseLLMProviderException, llm_provider_fm
-from fuzzyai.llm.providers.enums import LLMProvider
-from fuzzyai.llm.providers.local.models import LocalGenerateOptions
+from zynq.handlers.text_generation.llm_text_generator import LLMTextGenerationHandler
+from zynq.handlers.tokenizers.handler import TokensHandler  # type: ignore
+from zynq.llm.models import BaseLLMProviderResponse
+from zynq.llm.providers.base import BaseLLMMessage, BaseLLMProvider, BaseLLMProviderException, llm_provider_fm
+from zynq.llm.providers.enums import LLMProvider
+from zynq.llm.providers.local.models import LocalGenerateOptions
 
 logger = logging.getLogger(__name__)
 

@@ -2,8 +2,8 @@ import logging
 import random
 from typing import Any
 
-from fuzzyai.handlers.mutators.base import BaseMutator, mutators_fm
-from fuzzyai.handlers.mutators.enums import MutatorType
+from zynq.handlers.mutators.base import BaseMutator, mutators_fm
+from zynq.handlers.mutators.enums import MutatorType
 
 logger = logging.getLogger(__name__)
 

@@ -5,14 +5,14 @@ from typing import Any, Optional, Union
 
 import aiohttp
 
-from fuzzyai.consts import OLLAMA_BASE_PORT
-from fuzzyai.enums import LLMRole
-from fuzzyai.llm.models import BaseLLMProviderResponse
-from fuzzyai.llm.providers.base import BaseLLMMessage, BaseLLMProvider, BaseLLMProviderException, llm_provider_fm
-from fuzzyai.llm.providers.enums import LLMProvider
-from fuzzyai.llm.providers.ollama.models import (OllamaChatMessage, OllamaChatRequest, OllamaChatResponse,
+from zynq.consts import OLLAMA_BASE_PORT
+from zynq.enums import LLMRole
+from zynq.llm.models import BaseLLMProviderResponse
+from zynq.llm.providers.base import BaseLLMMessage, BaseLLMProvider, BaseLLMProviderException, llm_provider_fm
+from zynq.llm.providers.enums import LLMProvider
+from zynq.llm.providers.ollama.models import (OllamaChatMessage, OllamaChatRequest, OllamaChatResponse,
                                                  OllamaGenerateRequest, OllamaGenerateResponse, OllamaOptions)
-from fuzzyai.llm.providers.shared.decorators import api_endpoint
+from zynq.llm.providers.shared.decorators import api_endpoint
 
 logger = logging.getLogger(__name__)
 

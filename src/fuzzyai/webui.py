@@ -13,15 +13,15 @@ from dotenv import load_dotenv
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 # keep internal imports as fuzzyai.* for now so this runs without renaming package folder
-from fuzzyai.enums import EnvironmentVariables
-from fuzzyai.handlers.attacks.base import attack_handler_fm
-from fuzzyai.handlers.attacks.enums import FuzzerAttackMode
-from fuzzyai.handlers.classifiers.base import classifiers_fm
-from fuzzyai.handlers.classifiers.enums import Classifier
-from fuzzyai.llm.providers.base import llm_provider_fm
-from fuzzyai.llm.providers.enums import LLMProvider
-from fuzzyai.utils.utils import get_ollama_models
-from fuzzyai.fuzzer import Fuzzer
+from zynq.enums import EnvironmentVariables
+from zynq.handlers.attacks.base import attack_handler_fm
+from zynq.handlers.attacks.enums import FuzzerAttackMode
+from zynq.handlers.classifiers.base import classifiers_fm
+from zynq.handlers.classifiers.enums import Classifier
+from zynq.llm.providers.base import llm_provider_fm
+from zynq.llm.providers.enums import LLMProvider
+from zynq.utils.utils import get_ollama_models
+from zynq.fuzzer import Fuzzer
 
 load_dotenv()
 

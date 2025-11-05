@@ -5,14 +5,14 @@ from typing import Any, Optional, Union
 import aiohttp
 import backoff
 
-from fuzzyai.enums import EnvironmentVariables
-from fuzzyai.llm.models import BaseLLMProviderResponse
-from fuzzyai.llm.providers.anthropic.models import (AnthropicGenerateOptions, AnthropicMessagesRequest,
+from zynq.enums import EnvironmentVariables
+from zynq.llm.models import BaseLLMProviderResponse
+from zynq.llm.providers.anthropic.models import (AnthropicGenerateOptions, AnthropicMessagesRequest,
                                                     AnthropicMessagesResponse)
-from fuzzyai.llm.providers.base import (BaseLLMMessage, BaseLLMProvider, BaseLLMProviderException,
+from zynq.llm.providers.base import (BaseLLMMessage, BaseLLMProvider, BaseLLMProviderException,
                                         BaseLLMProviderRateLimitException, llm_provider_fm)
-from fuzzyai.llm.providers.enums import LLMProvider
-from fuzzyai.llm.providers.shared.decorators import api_endpoint
+from zynq.llm.providers.enums import LLMProvider
+from zynq.llm.providers.shared.decorators import api_endpoint
 
 logger = logging.getLogger(__name__)
 

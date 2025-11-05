@@ -1,10 +1,10 @@
 import logging
 from typing import Any, Optional
 
-from fuzzyai.llm.models import BaseLLMProviderResponse
-from fuzzyai.llm.providers.base import llm_provider_fm
-from fuzzyai.llm.providers.enums import LLMProvider, LLMProviderExtraParams
-from fuzzyai.llm.providers.local.local_llm import LocalProvider, LocalProviderException
+from zynq.llm.models import BaseLLMProviderResponse
+from zynq.llm.providers.base import llm_provider_fm
+from zynq.llm.providers.enums import LLMProvider, LLMProviderExtraParams
+from zynq.llm.providers.local.local_llm import LocalProvider, LocalProviderException
 
 logger = logging.getLogger(__name__)
 

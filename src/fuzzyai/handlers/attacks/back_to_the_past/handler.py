@@ -3,11 +3,11 @@ from typing import Any, Final, Optional, Type
 
 from pydantic import BaseModel, Field
 
-from fuzzyai.handlers.attacks.base import (BaseAttackTechniqueHandler, BaseAttackTechniqueHandlerException,
+from zynq.handlers.attacks.base import (BaseAttackTechniqueHandler, BaseAttackTechniqueHandlerException,
                                            attack_handler_fm)
-from fuzzyai.handlers.attacks.enums import FuzzerAttackMode
-from fuzzyai.handlers.attacks.models import AttackResultEntry
-from fuzzyai.llm.providers.base import BaseLLMProvider, BaseLLMProviderException
+from zynq.handlers.attacks.enums import FuzzerAttackMode
+from zynq.handlers.attacks.models import AttackResultEntry
+from zynq.llm.providers.base import BaseLLMProvider, BaseLLMProviderException
 
 logger = logging.getLogger(__name__)
 

@@ -4,9 +4,9 @@ from unittest.mock import AsyncMock
 import pytest
 from aiohttp import web
 
-from fuzzyai.llm.providers.anthropic.handler import AnthropicProvider
-from fuzzyai.llm.providers.anthropic.models import AnthropicMessage, AnthropicMessagesResponse
-from fuzzyai.llm.providers.base import BaseLLMProviderResponse
+from zynq.llm.providers.anthropic.handler import AnthropicProvider
+from zynq.llm.providers.anthropic.models import AnthropicMessage, AnthropicMessagesResponse
+from zynq.llm.providers.base import BaseLLMProviderResponse
 
 
 @dataclasses.dataclass

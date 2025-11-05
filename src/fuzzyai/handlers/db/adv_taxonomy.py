@@ -3,9 +3,9 @@ from typing import Any
 
 import motor.motor_asyncio
 
-from fuzzyai.consts import DATABASE_NAME, TAXONOMIES_COLLECTION_NAME
-from fuzzyai.db.mongodb import MongoDBHandler, MongoDocument
-from fuzzyai.models.prompt import BasePrompt
+from zynq.consts import DATABASE_NAME, TAXONOMIES_COLLECTION_NAME
+from zynq.db.mongodb import MongoDBHandler, MongoDocument
+from zynq.models.prompt import BasePrompt
 
 
 class AdversarialTaxonomyDTO(BasePrompt, MongoDocument):

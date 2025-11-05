@@ -2,7 +2,7 @@ from typing import Any, Optional
 
 from pydantic import BaseModel
 
-from fuzzyai.db.mongodb import MongoDocument
+from zynq.db.mongodb import MongoDocument
 
 
 class AttackResultEntry(BaseModel):

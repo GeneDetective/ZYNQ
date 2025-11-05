@@ -6,9 +6,9 @@ from typing import Any, Dict, Optional, Type, Union
 
 from tabulate import tabulate
 
-from fuzzyai.llm.providers.base import BaseLLMProvider, llm_provider_fm
-from fuzzyai.llm.providers.enums import LLMProvider
-from fuzzyai.models.fuzzer_result import FuzzerResult
+from zynq.llm.providers.base import BaseLLMProvider, llm_provider_fm
+from zynq.llm.providers.enums import LLMProvider
+from zynq.models.fuzzer_result import FuzzerResult
 
 CURRENT_TIMESTAMP = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 logger = logging.getLogger(__name__)

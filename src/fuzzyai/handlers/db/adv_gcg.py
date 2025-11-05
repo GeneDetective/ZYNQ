@@ -5,8 +5,8 @@ from uuid import uuid4
 import motor.motor_asyncio
 from pydantic import Field
 
-from fuzzyai.consts import DATABASE_NAME, GCG_ATTACK_COLLECTION_NAME
-from fuzzyai.db.mongodb import MongoDBHandler, MongoDocument
+from zynq.consts import DATABASE_NAME, GCG_ATTACK_COLLECTION_NAME
+from zynq.db.mongodb import MongoDBHandler, MongoDocument
 
 
 class AdversarialGCGAttackDTO(MongoDocument):

@@ -3,16 +3,16 @@ from typing import Any, Final, Optional, Type
 
 from pydantic import BaseModel, Field
 
-from fuzzyai.consts import DEFAULT_OPEN_SOURCE_MODEL
-from fuzzyai.enums import LLMRole
-from fuzzyai.handlers.attacks.actor_attack.prompts import (ACTORS_GENERATION_PROMPT, BEHAVIOR_EXTRACTION_PROMPT,
+from zynq.consts import DEFAULT_OPEN_SOURCE_MODEL
+from zynq.enums import LLMRole
+from zynq.handlers.attacks.actor_attack.prompts import (ACTORS_GENERATION_PROMPT, BEHAVIOR_EXTRACTION_PROMPT,
                                                            QUESTIONS_GENERATION_PROMPT)
-from fuzzyai.handlers.attacks.actor_attack.utils import generate_model_error
-from fuzzyai.handlers.attacks.base import (BaseAttackTechniqueHandler, BaseAttackTechniqueHandlerException,
+from zynq.handlers.attacks.actor_attack.utils import generate_model_error
+from zynq.handlers.attacks.base import (BaseAttackTechniqueHandler, BaseAttackTechniqueHandlerException,
                                            attack_handler_fm)
-from fuzzyai.handlers.attacks.enums import FuzzerAttackMode
-from fuzzyai.handlers.attacks.models import AttackResultEntry
-from fuzzyai.llm.providers.base import BaseLLMMessage, BaseLLMProvider, BaseLLMProviderException
+from zynq.handlers.attacks.enums import FuzzerAttackMode
+from zynq.handlers.attacks.models import AttackResultEntry
+from zynq.llm.providers.base import BaseLLMMessage, BaseLLMProvider, BaseLLMProviderException
 
 logger = logging.getLogger(__name__)
 

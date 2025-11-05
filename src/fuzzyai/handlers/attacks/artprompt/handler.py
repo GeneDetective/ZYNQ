@@ -7,12 +7,12 @@ from typing import Any, Optional, Type
 from art import text2art
 from pydantic import BaseModel, Field
 
-from fuzzyai.handlers.attacks.artprompt.prompts import JAILBREAK_PROMPT, JAILBREAK_SIMPLE_PROMPT, LEARN_FONT_PROMPT
-from fuzzyai.handlers.attacks.base import BaseAttackTechniqueHandler, attack_handler_fm
-from fuzzyai.handlers.attacks.enums import FuzzerAttackMode
-from fuzzyai.handlers.attacks.models import AttackResultEntry
-from fuzzyai.handlers.db.adv_prompts import AdversarialPromptDTO
-from fuzzyai.llm.providers.base import BaseLLMProvider
+from zynq.handlers.attacks.artprompt.prompts import JAILBREAK_PROMPT, JAILBREAK_SIMPLE_PROMPT, LEARN_FONT_PROMPT
+from zynq.handlers.attacks.base import BaseAttackTechniqueHandler, attack_handler_fm
+from zynq.handlers.attacks.enums import FuzzerAttackMode
+from zynq.handlers.attacks.models import AttackResultEntry
+from zynq.handlers.db.adv_prompts import AdversarialPromptDTO
+from zynq.llm.providers.base import BaseLLMProvider
 
 logger = logging.getLogger(__name__)
 

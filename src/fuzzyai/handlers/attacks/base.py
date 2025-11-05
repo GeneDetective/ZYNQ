@@ -12,14 +12,14 @@ from pydantic import BaseModel
 from pydantic_core import PydanticUndefinedType, ValidationError
 from tqdm import tqdm
 
-from fuzzyai.handlers.attacks.proto import AttackResultEntry, AttackSummary, BaseAttackTechniqueHandlerProto
-from fuzzyai.handlers.classifiers.base import BaseClassifier
-from fuzzyai.handlers.classifiers.enums import Classifier
-from fuzzyai.handlers.db.adv_prompts import AdversarialPromptDTO
-from fuzzyai.handlers.response_refinement_handler import RefinementException, ResponseRefinementHandler
-from fuzzyai.llm.models import BaseLLMProviderResponse
-from fuzzyai.llm.providers.base import BaseLLMProvider
-from fuzzyai.utils.flavor_manager import FlavorManager
+from zynq.handlers.attacks.proto import AttackResultEntry, AttackSummary, BaseAttackTechniqueHandlerProto
+from zynq.handlers.classifiers.base import BaseClassifier
+from zynq.handlers.classifiers.enums import Classifier
+from zynq.handlers.db.adv_prompts import AdversarialPromptDTO
+from zynq.handlers.response_refinement_handler import RefinementException, ResponseRefinementHandler
+from zynq.llm.models import BaseLLMProviderResponse
+from zynq.llm.providers.base import BaseLLMProvider
+from zynq.utils.flavor_manager import FlavorManager
 
 logger = logging.getLogger(__name__)
 

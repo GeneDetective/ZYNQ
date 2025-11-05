@@ -1,7 +1,7 @@
 import pytest
 
-from fuzzyai.llm.models import BaseLLMProviderResponse
-from fuzzyai.llm.providers.azure.azure import AzureProvider
+from zynq.llm.models import BaseLLMProviderResponse
+from zynq.llm.providers.azure.azure import AzureProvider
 
 
 @pytest.fixture

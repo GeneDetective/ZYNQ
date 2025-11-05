@@ -3,9 +3,9 @@ import logging
 from importlib import resources
 from typing import Any
 
-from fuzzyai.handlers.attacks.base import attack_handler_fm
-from fuzzyai.handlers.attacks.enums import FuzzerAttackMode
-from fuzzyai.handlers.attacks.taxonomy.handler import TaxonomyParaphraser
+from zynq.handlers.attacks.base import attack_handler_fm
+from zynq.handlers.attacks.enums import FuzzerAttackMode
+from zynq.handlers.attacks.taxonomy.handler import TaxonomyParaphraser
 
 logger = logging.getLogger(__name__)
 
@@ -22,7 +22,7 @@ class HistoryFramingAttackHandler(TaxonomyParaphraser):
         self._extra_args.taxonomy_model = DEFAULT_TAXONOMY_MODEL
 
     def _load_taxonomy_dataset(self) -> None:
-        with resources.open_text("fuzzyai.resources", "persuasion_taxonomy.jsonl") as f:
+        with resources.open_text("zynq.resources", "persuasion_taxonomy.jsonl") as f:
             data = f.read()
 
         self._taxonomies = [json.loads(jline) for jline in data.splitlines()][:1]

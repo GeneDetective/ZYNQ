@@ -5,11 +5,11 @@ from typing import Any, List, Optional, Tuple, Type
 
 from pydantic import BaseModel, Field
 
-from fuzzyai.handlers.attacks.base import BaseAttackTechniqueHandler, attack_handler_fm
-from fuzzyai.handlers.attacks.enums import FuzzerAttackMode
-from fuzzyai.handlers.attacks.models import AttackResultEntry
-from fuzzyai.handlers.classifiers import HarmfulScoreLLMClassifier, HarmScore
-from fuzzyai.handlers.classifiers.enums import Classifier
+from zynq.handlers.attacks.base import BaseAttackTechniqueHandler, attack_handler_fm
+from zynq.handlers.attacks.enums import FuzzerAttackMode
+from zynq.handlers.attacks.models import AttackResultEntry
+from zynq.handlers.classifiers import HarmfulScoreLLMClassifier, HarmScore
+from zynq.handlers.classifiers.enums import Classifier
 
 logger = logging.getLogger(__name__)
 

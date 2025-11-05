@@ -1,7 +1,7 @@
 import pytest
 
-from fuzzyai.llm.models import BaseLLMProviderResponse
-from fuzzyai.llm.providers.local.local_llm import LocalProvider
+from zynq.llm.models import BaseLLMProviderResponse
+from zynq.llm.providers.local.local_llm import LocalProvider
 
 
 @pytest.fixture

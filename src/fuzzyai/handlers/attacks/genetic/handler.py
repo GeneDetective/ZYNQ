@@ -6,17 +6,17 @@ import numpy as np
 import pygad
 from pydantic import BaseModel
 
-from fuzzyai.handlers.attacks.base import BaseAttackTechniqueHandler, attack_handler_fm
-from fuzzyai.handlers.attacks.enums import FuzzerAttackMode
-from fuzzyai.handlers.attacks.models import AttackResultEntry
-from fuzzyai.handlers.classifiers.cosine_similarity.handler import CosineSimilarityClassifier
-from fuzzyai.handlers.classifiers.disapproval.handler import DisapprovalClassifier
-from fuzzyai.handlers.db.adv_prompts import AdversarialPromptDTO
-from fuzzyai.handlers.tokenizers.handler import TokensHandler
-from fuzzyai.llm.models import BaseLLMProviderResponse
-from fuzzyai.llm.providers.enums import LLMProviderExtraParams
-from fuzzyai.llm.providers.local.llama2_llm import Llama2Provider
-from fuzzyai.llm.providers.openai.openai import OpenAIProvider
+from zynq.handlers.attacks.base import BaseAttackTechniqueHandler, attack_handler_fm
+from zynq.handlers.attacks.enums import FuzzerAttackMode
+from zynq.handlers.attacks.models import AttackResultEntry
+from zynq.handlers.classifiers.cosine_similarity.handler import CosineSimilarityClassifier
+from zynq.handlers.classifiers.disapproval.handler import DisapprovalClassifier
+from zynq.handlers.db.adv_prompts import AdversarialPromptDTO
+from zynq.handlers.tokenizers.handler import TokensHandler
+from zynq.llm.models import BaseLLMProviderResponse
+from zynq.llm.providers.enums import LLMProviderExtraParams
+from zynq.llm.providers.local.llama2_llm import Llama2Provider
+from zynq.llm.providers.openai.openai import OpenAIProvider
 
 logger = logging.getLogger(__name__)
 

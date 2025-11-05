@@ -5,16 +5,16 @@ from typing import Any, Final, Optional, Type
 
 from pydantic import BaseModel, Field
 
-from fuzzyai.consts import DEFAULT_OPEN_SOURCE_MODEL
-from fuzzyai.handlers.attacks.base import (BaseAttackTechniqueHandler, BaseAttackTechniqueHandlerException,
+from zynq.consts import DEFAULT_OPEN_SOURCE_MODEL
+from zynq.handlers.attacks.base import (BaseAttackTechniqueHandler, BaseAttackTechniqueHandlerException,
                                            attack_handler_fm)
-from fuzzyai.handlers.attacks.enums import FuzzerAttackMode
-from fuzzyai.handlers.attacks.gpt_fuzzer.prompt_templates import (ATTACKING_PROMPTS_TEMPLATES, CROSSOVER_ACTION_PROMPT,
+from zynq.handlers.attacks.enums import FuzzerAttackMode
+from zynq.handlers.attacks.gpt_fuzzer.prompt_templates import (ATTACKING_PROMPTS_TEMPLATES, CROSSOVER_ACTION_PROMPT,
                                                                   EXPAND_ACTION_PROMPT, GENERATE_ACTION_PROMPT,
                                                                   REPHRASE_ACTION_PROMPT, SHORTEN_ACTION_PROMPT)
-from fuzzyai.handlers.attacks.models import AttackResultEntry
-from fuzzyai.llm.models import BaseLLMProviderResponse
-from fuzzyai.llm.providers.base import BaseLLMProvider
+from zynq.handlers.attacks.models import AttackResultEntry
+from zynq.llm.models import BaseLLMProviderResponse
+from zynq.llm.providers.base import BaseLLMProvider
 
 logger = logging.getLogger(__name__)
 

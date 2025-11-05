@@ -2,8 +2,8 @@ from typing import Any
 
 import motor.motor_asyncio
 
-from fuzzyai.consts import ADVERSARIAL_SUFFIX_COLLECTION_NAME, DATABASE_NAME, FIELD_NAME_SUFFIX
-from fuzzyai.db.mongodb import MongoDBHandler, MongoDocument
+from zynq.consts import ADVERSARIAL_SUFFIX_COLLECTION_NAME, DATABASE_NAME, FIELD_NAME_SUFFIX
+from zynq.db.mongodb import MongoDBHandler, MongoDocument
 
 
 class AdversarialSuffixDTO(MongoDocument):

@@ -1,8 +1,8 @@
 
 from pydantic import BaseModel, Field
 
-from fuzzyai.consts import PARAMETER_MAX_TOKENS
-from fuzzyai.enums import LLMRole
+from zynq.consts import PARAMETER_MAX_TOKENS
+from zynq.enums import LLMRole
 
 
 class AzureGenerateOptions(BaseModel):

@@ -2,9 +2,9 @@ import logging
 
 import motor.motor_asyncio
 
-from fuzzyai.consts import DATABASE_NAME, FUZZER_REPORT_COLLECTION_NAME
-from fuzzyai.db.mongodb import MongoDBHandler
-from fuzzyai.models.fuzzer_result import FuzzerResult
+from zynq.consts import DATABASE_NAME, FUZZER_REPORT_COLLECTION_NAME
+from zynq.db.mongodb import MongoDBHandler
+from zynq.models.fuzzer_result import FuzzerResult
 
 logger = logging.getLogger(__name__)
 

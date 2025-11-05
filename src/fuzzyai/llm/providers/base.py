@@ -4,10 +4,10 @@ from typing import Any, Optional, Type, TypeVar, Union, List
 
 from pydantic import BaseModel
 
-from fuzzyai.llm.chain import FuzzChain, FuzzNode
-from fuzzyai.llm.models import BaseLLMProviderResponse
-from fuzzyai.llm.providers.enums import LLMProvider
-from fuzzyai.utils.flavor_manager import TypedFlavorManager
+from zynq.llm.chain import FuzzChain, FuzzNode
+from zynq.llm.models import BaseLLMProviderResponse
+from zynq.llm.providers.enums import LLMProvider
+from zynq.utils.flavor_manager import TypedFlavorManager
 
 T = TypeVar('T')
 KeyT = TypeVar('KeyT')

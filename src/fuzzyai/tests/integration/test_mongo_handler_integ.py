@@ -3,8 +3,8 @@ from typing import Any
 import pytest
 from motor.motor_asyncio import AsyncIOMotorClient
 
-from fuzzyai.handlers.db.adv_attacks import AdversarialAttackDTO, AdversarialAttacksHandler
-from fuzzyai.handlers.db.adv_prompts import AdversarialPromptDTO, AdversarialPromptsHandler
+from zynq.handlers.db.adv_attacks import AdversarialAttackDTO, AdversarialAttacksHandler
+from zynq.handlers.db.adv_prompts import AdversarialPromptDTO, AdversarialPromptsHandler
 
 
 @pytest.fixture

@@ -5,13 +5,13 @@ from typing import Any, Optional, Type, Union
 
 import boto3
 
-from fuzzyai.enums import EnvironmentVariables, LLMRole
-from fuzzyai.llm.models import BaseLLMProviderResponse
-from fuzzyai.llm.providers.base import BaseLLMMessage, BaseLLMProvider, BaseLLMProviderException, llm_provider_fm
-from fuzzyai.llm.providers.bedrock.enums import BedrockModelFamily
-from fuzzyai.llm.providers.bedrock.models import (BedrockAnthropicGenerateRequest, BedrockChatMessage,
+from zynq.enums import EnvironmentVariables, LLMRole
+from zynq.llm.models import BaseLLMProviderResponse
+from zynq.llm.providers.base import BaseLLMMessage, BaseLLMProvider, BaseLLMProviderException, llm_provider_fm
+from zynq.llm.providers.bedrock.enums import BedrockModelFamily
+from zynq.llm.providers.bedrock.models import (BedrockAnthropicGenerateRequest, BedrockChatMessage,
                                                   BedrockGenerateRequestBase, BedrockMetaGenerateRequest)
-from fuzzyai.llm.providers.enums import LLMProvider
+from zynq.llm.providers.enums import LLMProvider
 
 logger = logging.getLogger(__name__)
 

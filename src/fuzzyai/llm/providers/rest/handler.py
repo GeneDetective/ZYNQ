@@ -7,10 +7,10 @@ import aiohttp
 import requests
 from jsonpath_ng import parse
 
-from fuzzyai.llm.models import BaseLLMProviderResponse
-from fuzzyai.llm.providers.base import BaseLLMMessage, BaseLLMProvider, BaseLLMProviderException, llm_provider_fm
-from fuzzyai.llm.providers.enums import LLMProvider
-from fuzzyai.llm.providers.rest.utils import parse_http_request
+from zynq.llm.models import BaseLLMProviderResponse
+from zynq.llm.providers.base import BaseLLMMessage, BaseLLMProvider, BaseLLMProviderException, llm_provider_fm
+from zynq.llm.providers.enums import LLMProvider
+from zynq.llm.providers.rest.utils import parse_http_request
 
 PROMPT_TOKEN = "<PROMPT>"
 

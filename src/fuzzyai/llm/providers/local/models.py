@@ -2,8 +2,8 @@ from typing import Optional
 
 from pydantic import Field, model_validator
 
-from fuzzyai.consts import PARAMETER_MAX_TOKENS
-from fuzzyai.models.base_models import RemoveNoneModel
+from zynq.consts import PARAMETER_MAX_TOKENS
+from zynq.models.base_models import RemoveNoneModel
 
 
 class LocalGenerateOptions(RemoveNoneModel):

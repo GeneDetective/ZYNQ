@@ -1,9 +1,9 @@
 import logging
 from typing import Any
 
-from fuzzyai.handlers.mutators.base import BaseMutator, mutators_fm
-from fuzzyai.handlers.mutators.enums import MutatorType
-from fuzzyai.llm.providers.base import BaseLLMProvider
+from zynq.handlers.mutators.base import BaseMutator, mutators_fm
+from zynq.handlers.mutators.enums import MutatorType
+from zynq.llm.providers.base import BaseLLMProvider
 
 PROMPT_TEMPLATE = "Summarize the following document: {document}"
 SYSTEM_PROMPT = "You are proficient in summarizing documents"

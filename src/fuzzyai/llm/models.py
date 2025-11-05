@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from fuzzyai.models.prompt import BasePrompt
+from zynq.models.prompt import BasePrompt
 
 
 class BaseLLMProviderResponse(BaseModel):

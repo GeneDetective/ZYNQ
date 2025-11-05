@@ -1,5 +1,5 @@
-from fuzzyai.llm.providers.base import llm_provider_fm
-from fuzzyai.llm.providers.ollama.ollama import OllamaProvider
+from zynq.llm.providers.base import llm_provider_fm
+from zynq.llm.providers.ollama.ollama import OllamaProvider
 
 
 async def test_ollama_provider():

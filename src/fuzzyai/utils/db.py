@@ -5,9 +5,9 @@ import aiofiles
 import aiofiles.os
 from motor.motor_asyncio import AsyncIOMotorClient
 
-from fuzzyai.db.mongodb import MongoDocument
-from fuzzyai.handlers.db.adv_prompts import AdversarialPromptDTO, AdversarialPromptsHandler
-from fuzzyai.handlers.db.adv_suffixes import AdversarialSuffixDTO, AdversarialSuffixesHandler
+from zynq.db.mongodb import MongoDocument
+from zynq.handlers.db.adv_prompts import AdversarialPromptDTO, AdversarialPromptsHandler
+from zynq.handlers.db.adv_suffixes import AdversarialSuffixDTO, AdversarialSuffixesHandler
 
 logger = logging.getLogger(__name__)
 

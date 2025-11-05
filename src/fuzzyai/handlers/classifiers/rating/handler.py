@@ -2,10 +2,10 @@ import logging
 import re
 from typing import Any, Optional
 
-from fuzzyai.handlers.classifiers.base import BaseClassifier, classifiers_fm
-from fuzzyai.handlers.classifiers.enums import Classifier
-from fuzzyai.handlers.classifiers.rating.models import RatingRequest
-from fuzzyai.llm.providers.base import BaseLLMMessage, BaseLLMProvider
+from zynq.handlers.classifiers.base import BaseClassifier, classifiers_fm
+from zynq.handlers.classifiers.enums import Classifier
+from zynq.handlers.classifiers.rating.models import RatingRequest
+from zynq.llm.providers.base import BaseLLMMessage, BaseLLMProvider
 
 logger = logging.getLogger(__name__)
 

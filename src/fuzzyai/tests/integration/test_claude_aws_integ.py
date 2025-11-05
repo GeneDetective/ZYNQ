@@ -1,7 +1,7 @@
 import pytest
 
-from fuzzyai.llm.models import BaseLLMProviderResponse
-from fuzzyai.llm.providers.claude.bedrock import AwsBedrockProvider
+from zynq.llm.models import BaseLLMProviderResponse
+from zynq.llm.providers.claude.bedrock import AwsBedrockProvider
 
 
 @pytest.fixture

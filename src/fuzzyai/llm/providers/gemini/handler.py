@@ -5,13 +5,13 @@ from typing import Any, Optional, Union
 import aiohttp
 import backoff
 
-from fuzzyai.enums import EnvironmentVariables, LLMRole
-from fuzzyai.llm.models import BaseLLMProviderResponse
-from fuzzyai.llm.providers.base import (BaseLLMMessage, BaseLLMProvider, BaseLLMProviderException,
+from zynq.enums import EnvironmentVariables, LLMRole
+from zynq.llm.models import BaseLLMProviderResponse
+from zynq.llm.providers.base import (BaseLLMMessage, BaseLLMProvider, BaseLLMProviderException,
                                         BaseLLMProviderRateLimitException, llm_provider_fm)
-from fuzzyai.llm.providers.enums import LLMProvider
-from fuzzyai.llm.providers.gemini.models import GenerateContentRequest, GenerateContentResponse, SafetySetting
-from fuzzyai.llm.providers.shared.decorators import api_endpoint
+from zynq.llm.providers.enums import LLMProvider
+from zynq.llm.providers.gemini.models import GenerateContentRequest, GenerateContentResponse, SafetySetting
+from zynq.llm.providers.shared.decorators import api_endpoint
 
 logger = logging.getLogger(__name__)
 

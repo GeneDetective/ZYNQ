@@ -3,17 +3,17 @@ from typing import Any, Final, Optional, Type
 
 from pydantic import BaseModel, Field
 
-from fuzzyai.consts import DEFAULT_OPEN_SOURCE_MODEL
-from fuzzyai.enums import LLMRole
-from fuzzyai.handlers.attacks.base import (BaseAttackTechniqueHandler, BaseAttackTechniqueHandlerException,
+from zynq.consts import DEFAULT_OPEN_SOURCE_MODEL
+from zynq.enums import LLMRole
+from zynq.handlers.attacks.base import (BaseAttackTechniqueHandler, BaseAttackTechniqueHandlerException,
                                            attack_handler_fm)
-from fuzzyai.handlers.attacks.enums import FuzzerAttackMode
-from fuzzyai.handlers.attacks.models import AttackResultEntry
-from fuzzyai.handlers.attacks.word_game.word_game_prompts import (HINTS_GENERATION_PROMPT, REPHRASING_PROMPT,
+from zynq.handlers.attacks.enums import FuzzerAttackMode
+from zynq.handlers.attacks.models import AttackResultEntry
+from zynq.handlers.attacks.word_game.word_game_prompts import (HINTS_GENERATION_PROMPT, REPHRASING_PROMPT,
                                                                   WORD_GAME_PLUS_PROMPT, WORD_GAME_PROMPT,
                                                                   WORD_IDENTIFICATION_PROMPT)
-from fuzzyai.llm.models import BaseLLMProviderResponse
-from fuzzyai.llm.providers.base import BaseLLMMessage, BaseLLMProvider
+from zynq.llm.models import BaseLLMProviderResponse
+from zynq.llm.providers.base import BaseLLMMessage, BaseLLMProvider
 
 logger = logging.getLogger(__name__)
 

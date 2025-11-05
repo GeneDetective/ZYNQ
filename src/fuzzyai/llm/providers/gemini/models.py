@@ -4,9 +4,9 @@ from typing import Any, Optional
 
 from pydantic import Field
 
-from fuzzyai.consts import PARAMETER_MAX_TOKENS
-from fuzzyai.llm.providers.base import BaseLLMMessage
-from fuzzyai.models.base_models import AliasedBaseModel
+from zynq.consts import PARAMETER_MAX_TOKENS
+from zynq.llm.providers.base import BaseLLMMessage
+from zynq.models.base_models import AliasedBaseModel
 
 
 class TextPart(AliasedBaseModel):

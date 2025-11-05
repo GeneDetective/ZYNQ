@@ -15,16 +15,16 @@ from dotenv import load_dotenv
 
 # allow local package imports without renaming the package yet
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from fuzzyai.consts import DEFAULT_SYSTEM_PROMPT, PARAMETER_MAX_TOKENS, WIKI_LINK
-from fuzzyai.fuzzer import Fuzzer
-from fuzzyai.handlers.attacks.base import attack_handler_fm
-from fuzzyai.handlers.attacks.enums import FuzzerAttackMode
-from fuzzyai.handlers.classifiers.base import classifiers_fm
-from fuzzyai.handlers.classifiers.enums import Classifier
-from fuzzyai.llm.providers.base import llm_provider_fm
-from fuzzyai.llm.providers.enums import LLMProvider
-from fuzzyai.utils.custom_logging_formatter import CustomFormatter
-from fuzzyai.utils.utils import CURRENT_TIMESTAMP, generate_report, print_report, run_ollama_list_command
+from zynq.consts import DEFAULT_SYSTEM_PROMPT, PARAMETER_MAX_TOKENS, WIKI_LINK
+from zynq.fuzzer import Fuzzer
+from zynq.handlers.attacks.base import attack_handler_fm
+from zynq.handlers.attacks.enums import FuzzerAttackMode
+from zynq.handlers.classifiers.base import classifiers_fm
+from zynq.handlers.classifiers.enums import Classifier
+from zynq.llm.providers.base import llm_provider_fm
+from zynq.llm.providers.enums import LLMProvider
+from zynq.utils.custom_logging_formatter import CustomFormatter
+from zynq.utils.utils import CURRENT_TIMESTAMP, generate_report, print_report, run_ollama_list_command
 
 logging.basicConfig(level=logging.INFO)
 
@@ -241,7 +241,7 @@ async def run_webui(args: argparse.Namespace) -> None:
     Run the Streamlit web UI (launcher).
     """
     port = getattr(args, "port", 8080)
-    ui_path = Path("src") / "fuzzyai" / "webui.py"
+    ui_path = Path("src") / "zynq" / "webui.py"
     if not ui_path.exists():
         logger.error(f"Web UI entrypoint not found at {ui_path}. Ensure webui.py exists.")
         return

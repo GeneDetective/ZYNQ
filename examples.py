@@ -3,13 +3,13 @@
 import asyncio
 import logging
 
-from fuzzyai.fuzzer import Fuzzer
-from fuzzyai.handlers.attacks.enums import FuzzerAttackMode
-from fuzzyai.handlers.attacks.genetic.handler import GeneticAttackParams
-from fuzzyai.handlers.classifiers.disapproval.handler import DisapprovalClassifier
-from fuzzyai.handlers.classifiers.harmful_llm.handler import HarmfulLLMClassifier
-from fuzzyai.handlers.classifiers.rating.handler import RatingClassifier
-from fuzzyai.llm.providers.enums import LLMProvider
+from zynq.fuzzer import Fuzzer
+from zynq.handlers.attacks.enums import FuzzerAttackMode
+from zynq.handlers.attacks.genetic.handler import GeneticAttackParams
+from zynq.handlers.classifiers.disapproval.handler import DisapprovalClassifier
+from zynq.handlers.classifiers.harmful_llm.handler import HarmfulLLMClassifier
+from zynq.handlers.classifiers.rating.handler import RatingClassifier
+from zynq.llm.providers.enums import LLMProvider
 
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
 

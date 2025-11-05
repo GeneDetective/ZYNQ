@@ -3,12 +3,12 @@ from typing import Any, Optional
 
 from pydantic import BaseModel
 
-from fuzzyai.handlers.attacks.base import BaseAttackTechniqueHandler, attack_handler_fm
-from fuzzyai.handlers.attacks.enums import FuzzerAttackMode
-from fuzzyai.handlers.attacks.hallucinations.prompt import PROMPT_TEMPLATE
-from fuzzyai.handlers.attacks.models import AttackResultEntry
-from fuzzyai.handlers.db.adv_prompts import AdversarialPromptDTO
-from fuzzyai.llm.providers.base import BaseLLMMessage, BaseLLMProvider
+from zynq.handlers.attacks.base import BaseAttackTechniqueHandler, attack_handler_fm
+from zynq.handlers.attacks.enums import FuzzerAttackMode
+from zynq.handlers.attacks.hallucinations.prompt import PROMPT_TEMPLATE
+from zynq.handlers.attacks.models import AttackResultEntry
+from zynq.handlers.db.adv_prompts import AdversarialPromptDTO
+from zynq.llm.providers.base import BaseLLMMessage, BaseLLMProvider
 
 logger = logging.getLogger(__name__)
 

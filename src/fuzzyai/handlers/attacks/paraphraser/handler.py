@@ -5,17 +5,17 @@ from typing import Any, Optional, Type
 
 from pydantic import BaseModel, Field, ValidationError
 
-from fuzzyai.consts import DEFAULT_OPEN_SOURCE_MODEL
-from fuzzyai.enums import LLMRole
-from fuzzyai.handlers.attacks.base import AttackBreakWhen, BaseAttackTechniqueHandler, attack_handler_fm
-from fuzzyai.handlers.attacks.enums import FuzzerAttackMode
-from fuzzyai.handlers.attacks.paraphraser.enums import PersuasiveActor
-from fuzzyai.handlers.attacks.paraphraser.models import PersuasiveIterationTargetOutput, PersusiveIterationResponse
-from fuzzyai.handlers.attacks.paraphraser.prompts import get_attacker_system_prompt
-from fuzzyai.handlers.attacks.proto import AttackResultEntry
-from fuzzyai.handlers.classifiers.enums import Classifier
-from fuzzyai.llm.providers.base import BaseLLMMessage
-from fuzzyai.utils.utils import extract_json
+from zynq.consts import DEFAULT_OPEN_SOURCE_MODEL
+from zynq.enums import LLMRole
+from zynq.handlers.attacks.base import AttackBreakWhen, BaseAttackTechniqueHandler, attack_handler_fm
+from zynq.handlers.attacks.enums import FuzzerAttackMode
+from zynq.handlers.attacks.paraphraser.enums import PersuasiveActor
+from zynq.handlers.attacks.paraphraser.models import PersuasiveIterationTargetOutput, PersusiveIterationResponse
+from zynq.handlers.attacks.paraphraser.prompts import get_attacker_system_prompt
+from zynq.handlers.attacks.proto import AttackResultEntry
+from zynq.handlers.classifiers.enums import Classifier
+from zynq.llm.providers.base import BaseLLMMessage
+from zynq.utils.utils import extract_json
 
 logger = logging.getLogger(__name__)
 

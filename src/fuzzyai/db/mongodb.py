@@ -4,7 +4,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from motor.motor_tornado import MotorClient
 from pydantic import BaseModel
 
-from fuzzyai.consts import ID_FIELD, MONGO_OPERATOR_GT
+from zynq.consts import ID_FIELD, MONGO_OPERATOR_GT
 
 T = TypeVar('T', bound='MongoDocument')
 

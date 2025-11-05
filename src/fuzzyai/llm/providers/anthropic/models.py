@@ -3,9 +3,9 @@ from typing import Optional
 
 from pydantic import BaseModel, Field
 
-from fuzzyai.consts import PARAMETER_MAX_TOKENS
-from fuzzyai.llm.providers.base import BaseLLMMessage
-from fuzzyai.models.base_models import RemoveNoneModel
+from zynq.consts import PARAMETER_MAX_TOKENS
+from zynq.llm.providers.base import BaseLLMMessage
+from zynq.models.base_models import RemoveNoneModel
 
 
 class AnthropicGenerateOptions(BaseModel):

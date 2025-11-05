@@ -1,7 +1,7 @@
 import abc
 from typing import Any, Type
 
-from fuzzyai.utils.flavor_manager import FlavorManager
+from zynq.utils.flavor_manager import FlavorManager
 
 
 class BaseMutator(abc.ABC):

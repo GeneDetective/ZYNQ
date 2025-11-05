@@ -3,12 +3,12 @@ import logging
 import re
 from typing import Any, Coroutine
 
-from fuzzyai.handlers.classifiers.base import BaseClassifier, classifiers_fm
-from fuzzyai.handlers.classifiers.committee.prompts import COH_PROMPT, CON_PROMPT, REL_PROMPT
-from fuzzyai.handlers.classifiers.enums import Classifier
-from fuzzyai.handlers.classifiers.harmful_llm.handler import HarmfulLLMClassifier
-from fuzzyai.llm.models import BaseLLMProviderResponse
-from fuzzyai.llm.providers.base import BaseLLMMessage, BaseLLMProvider
+from zynq.handlers.classifiers.base import BaseClassifier, classifiers_fm
+from zynq.handlers.classifiers.committee.prompts import COH_PROMPT, CON_PROMPT, REL_PROMPT
+from zynq.handlers.classifiers.enums import Classifier
+from zynq.handlers.classifiers.harmful_llm.handler import HarmfulLLMClassifier
+from zynq.llm.models import BaseLLMProviderResponse
+from zynq.llm.providers.base import BaseLLMMessage, BaseLLMProvider
 
 logger = logging.getLogger(__name__)
 

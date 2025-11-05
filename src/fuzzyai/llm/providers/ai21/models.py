@@ -1,7 +1,7 @@
 from typing import Optional
 
-from fuzzyai.llm.providers.base import BaseLLMMessage
-from fuzzyai.models.base_models import RemoveNoneModel
+from zynq.llm.providers.base import BaseLLMMessage
+from zynq.models.base_models import RemoveNoneModel
 
 
 class AI21ChatRequest(RemoveNoneModel):
