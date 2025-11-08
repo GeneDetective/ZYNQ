@@ -1,60 +1,61 @@
-# type: ignore
+"""
+Tokenizer helpers with lazy imports.
+Works with HuggingFace tokenizers or tiktoken encodings.
+"""
+from typing import Any, Optional, Union
+import logging
 
-from typing import Union
+logger = logging.getLogger(__name__)
 
-import tiktoken
-import torch
-from transformers import AutoTokenizer
+
+def _lazy_auto_tokenizer():
+    try:
+        from transformers import AutoTokenizer as _AutoTokenizer
+    except Exception as e:
+        raise RuntimeError("Missing dependency 'transformers'. Install transformers to use tokenizer helpers.") from e
+    return _AutoTokenizer
 
 
 class TokensHandler:
-    def __init__(
-        self,
-        tokenizer: Union[AutoTokenizer, tiktoken.Encoding],
-    ):
+    def __init__(self, tokenizer: Optional[Any] = None, tokenizer_name: Optional[str] = None):
+        """
+        tokenizer can be:
+          - a HuggingFace tokenizer instance
+          - a tiktoken.Encoding instance (if you use tiktoken)
+          - None (in which case tokenizer_name will be used to lazy-load)
+        """
         self._tokenizer = tokenizer
-        self.vocabulary_size = -1
-        self.encode = None
-        self.decode = None
-        self.batch_decode = None
-        
-        if isinstance(self._tokenizer, tiktoken.Encoding):
-            self.vocabulary_size = self._tokenizer.n_vocab
-            self.encode = lambda x: torch.Tensor(self._tokenizer.encode(x)).type(torch.int64)
-            self.decode = self._tokenizer.decode
-            self.batch_decode = lambda x: self._tokenizer.decode_batch(x.tolist())
-        else:
-            self.vocabulary_size = self._tokenizer.vocab_size 
-            self.encode = lambda x: self._tokenizer.encode(x, return_tensors="pt") 
-            self.decode = lambda x, **kwargs: self._tokenizer.decode(x, **kwargs)
-            self.batch_decode = self._tokenizer.batch_decode
+        self._tokenizer_name = tokenizer_name
 
-    def generate_suffixes(
-        self,
-        seed: str = "! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !",
-        batch_size: int = 256,
-        append_seed: bool = True,
-    ) -> tuple[torch.Tensor, list[str]]:
-        encoded_seed = self.encode(seed)
-        encoded_seed = encoded_seed.squeeze(0)[1:]  # remove the bos token
-        # Repeat the encoded seed to create a batch
-        batch_size = batch_size if not append_seed else batch_size - 1
-        original_tokens_batch = encoded_seed.repeat(batch_size, 1)
+    def _ensure_tokenizer(self):
+        if self._tokenizer is not None:
+            return
+        AutoTokenizer = _lazy_auto_tokenizer()
+        if not self._tokenizer_name:
+            raise RuntimeError("Tokenizer name not provided for lazy loading")
+        self._tokenizer = AutoTokenizer.from_pretrained(self._tokenizer_name, trust_remote_code=True, use_fast=True)
 
-        # Calculate new token positions
-        new_token_pos = torch.arange(
-            0,
-            len(encoded_seed),
-            len(encoded_seed) / batch_size,
-        ).long()  # Ensure it's a long tensor for indices
+    def encode(self, text: str, **kwargs):
+        self._ensure_tokenizer()
+        return self._tokenizer.encode(text, **kwargs)
 
-        # Randomly sample new token values within the range of the vocabulary size
-        new_token_val = torch.randint(0, self.vocabulary_size, (batch_size, 1))
-        # Scatter the new token values into the original control tokens at the new positions
-        new_tokens_batch = original_tokens_batch.scatter(1, new_token_pos.unsqueeze(-1), new_token_val)
-        if append_seed:
-            new_tokens_batch = torch.cat((encoded_seed.unsqueeze(0), new_tokens_batch), dim=0)
-        
-        decoded_suffixes: list[str] = self.batch_decode(new_tokens_batch)
+    def decode(self, tokens, **kwargs):
+        self._ensure_tokenizer()
+        return self._tokenizer.decode(tokens, **kwargs)
 
-        return new_tokens_batch, decoded_suffixes
+    def batch_decode(self, sequences, **kwargs):
+        self._ensure_tokenizer()
+        # keep compatibility with HF tokenizer.batch_decode if available
+        if hasattr(self._tokenizer, "batch_decode"):
+            return self._tokenizer.batch_decode(sequences, **kwargs)
+        # otherwise decode one by one
+        return [self._tokenizer.decode(seq, **kwargs) for seq in sequences]
+
+    def apply_chat_template(self, messages: list[dict], tokenize: bool = True) -> str:
+        self._ensure_tokenizer()
+        if hasattr(self._tokenizer, "apply_chat_template"):
+            try:
+                return self._tokenizer.apply_chat_template(messages, tokenize=tokenize)
+            except Exception:
+                logger.debug("tokenizer.apply_chat_template failed, falling back to fallback join")
+        return "\n".join((m.get("role", "") + ": " + m.get("content", "")) for m in messages)

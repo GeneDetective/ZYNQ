@@ -13,24 +13,19 @@ import aiofiles
 import aiofiles.os
 from dotenv import load_dotenv
 
-# allow local package imports without renaming the package yet
+# ensure local package import path (keeps the previous behavior)
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from zynq.consts import DEFAULT_SYSTEM_PROMPT, PARAMETER_MAX_TOKENS, WIKI_LINK
-from zynq.fuzzer import Fuzzer
-from zynq.handlers.attacks.base import attack_handler_fm
-from zynq.handlers.attacks.enums import FuzzerAttackMode
-from zynq.handlers.classifiers.base import classifiers_fm
-from zynq.handlers.classifiers.enums import Classifier
-from zynq.llm.providers.base import llm_provider_fm
-from zynq.llm.providers.enums import LLMProvider
-from zynq.utils.custom_logging_formatter import CustomFormatter
-from zynq.utils.utils import CURRENT_TIMESTAMP, generate_report, print_report, run_ollama_list_command
 
+# Lightweight logging setup — use a simple formatter here to avoid importing project utils
+root_logger = logging.getLogger()
+root_logger.handlers.clear()
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))
+root_logger.addHandler(console_handler)
 logging.basicConfig(level=logging.INFO)
 
 load_dotenv()
 
-# ZYNQ banner (simple)
 banner = r"""
 
           _____                _____                    _____                   _______         
@@ -58,21 +53,30 @@ _______________\:::\____\    /::::::::::\____\/:: /    |::|   /::\____\|:::|____
 ZYNQ — Zero-Knowledge Intelligence Quotient
 """
 
-root_logger = logging.getLogger()
-root_logger.handlers.clear()
-console_handler = logging.StreamHandler()
-console_handler.setFormatter(CustomFormatter())
-root_logger.addHandler(console_handler)
-
 logger = logging.getLogger(__name__)
 
+# ---------- Helper: lazy import ----------
+import importlib
 
+
+def _lazy(module_name: str):
+    """Import module by name on demand."""
+    return importlib.import_module(module_name)
+
+
+# ---------- argparse Action ----------
 class LoadFromFile(argparse.Action):
     """
     Loads CLI arguments from a JSON file. Keeps original behavior.
     """
-    def __call__(self, parser: argparse.ArgumentParser, namespace: argparse.Namespace,
-                 values: Any, option_string: Optional[str] = None) -> None:
+
+    def __call__(
+        self,
+        parser: argparse.ArgumentParser,
+        namespace: argparse.Namespace,
+        values: Any,
+        option_string: Optional[str] = None,
+    ) -> None:
         cli_args: str = str()
         with values as f:
             json_data = json.loads(f.read())
@@ -88,18 +92,47 @@ class LoadFromFile(argparse.Action):
             parser.parse_args(shlex.split(cli_args), namespace)
 
 
+# ---------- CLI command implementations (lazy imports inside functions) ----------
 async def run_fuzzer(args: argparse.Namespace) -> None:
     """
     Run the fuzzer using the in-process `fuzz_and_return_json` helper.
-    Produces deterministic canonical JSON and SHA-256 hash for auditability.
+    Heavy modules are imported lazily here.
     """
+    # lazy imports used by the fuzzer flow
+    z_consts = _lazy("zynq.consts")
+    WIKI_LINK = getattr(z_consts, "WIKI_LINK", None)
+
+    # utils and fuzzer
+    utils = _lazy("zynq.utils.utils")
+    CURRENT_TIMESTAMP = getattr(utils, "CURRENT_TIMESTAMP", datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
+    generate_report = getattr(utils, "generate_report", None)
+    print_report = getattr(utils, "print_report", None)
+    run_ollama_list_command = getattr(utils, "run_ollama_list_command", None)
+
+    fuzzer_module = _lazy("zynq.fuzzer")
+    Fuzzer = getattr(fuzzer_module, "Fuzzer")
+
+    # attack and classifier registries
+    attacks_enum_mod = _lazy("zynq.handlers.attacks.enums")
+    FuzzerAttackMode = getattr(attacks_enum_mod, "FuzzerAttackMode")
+
+    classifiers_mod = _lazy("zynq.handlers.classifiers.base")
+    classifiers_fm = getattr(classifiers_mod, "classifiers_fm")
+
+    classifiers_enum_mod = _lazy("zynq.handlers.classifiers.enums")
+    Classifier = getattr(classifiers_enum_mod, "Classifier")
+
     if args.verbose:
         logger.info("Verbose logging ON")
         logging.getLogger().setLevel(logging.DEBUG)
         logging.getLogger().propagate = True
 
-    if args.ollama_list:
-        run_ollama_list_command()
+    if getattr(args, "ollama_list", False):
+        # run the helper (if available)
+        if callable(run_ollama_list_command):
+            run_ollama_list_command()
+        else:
+            logger.error("ollama list helper not available.")
         return
 
     # basic validations
@@ -131,7 +164,9 @@ async def run_fuzzer(args: argparse.Namespace) -> None:
         else:
             extras = vars(args)
     except Exception:
-        raise ValueError(f"Error adding extra argument, please make sure you use the correct format, i.e -e key=value. For further help, please check the wiki: {WIKI_LINK}")
+        raise ValueError(
+            f"Error adding extra argument, please make sure you use the correct format, i.e -e key=value. For further help, please check the wiki: {WIKI_LINK}"
+        )
 
     # load prompts
     if hasattr(args, "target_prompts_file") and args.target_prompts_file:
@@ -222,6 +257,7 @@ async def run_fuzzer(args: argparse.Namespace) -> None:
         fingerprint = fuzzer.get_result_hash(canon_json_str)
     else:
         import hashlib
+
         fingerprint = "0x" + hashlib.sha256(canon_json_str.encode("utf-8")).hexdigest()
 
     # Print summary to console
@@ -263,6 +299,7 @@ async def run_webui(args: argparse.Namespace) -> None:
         print("Web UI terminated")
 
 
+# ---------- CLI builder / entry ----------
 async def run_cli() -> None:
     """
     The command-line interface.
@@ -270,10 +307,29 @@ async def run_cli() -> None:
       - webui: launches the streamlit UI
       - fuzz : runs the fuzzer in-process and outputs canonical JSON + fingerprint
     """
+    # Now that we're running the CLI, we can safely import light project utilities
+    # (like the custom formatter) without causing the heavy model imports during module load.
+    try:
+        custom_formatter_mod = _lazy("zynq.utils.custom_logging_formatter")
+        CustomFormatter = getattr(custom_formatter_mod, "CustomFormatter")
+        # replace console handler formatter with the project's nicer formatter
+        console_handler.setFormatter(CustomFormatter())
+    except Exception:
+        # ignore formatter replacement errors — keep the simple formatter
+        pass
+
     print(banner)
 
-    parser = argparse.ArgumentParser(prog="zynq", formatter_class=argparse.RawTextHelpFormatter,
-                                     description="ZYNQ - Web-first model red-teaming toolkit (web + CLI)")
+    # Lazy import project constants and provider registry used to build help text.
+    z_consts = _lazy("zynq.consts")
+    DEFAULT_SYSTEM_PROMPT = getattr(z_consts, "DEFAULT_SYSTEM_PROMPT", "")
+    PARAMETER_MAX_TOKENS = getattr(z_consts, "PARAMETER_MAX_TOKENS", "max_tokens")
+    WIKI_LINK = getattr(z_consts, "WIKI_LINK", "")
+
+    # Build argparser
+    parser = argparse.ArgumentParser(
+        prog="zynq", formatter_class=argparse.RawTextHelpFormatter, description="ZYNQ - Web-first model red-teaming toolkit (web + CLI)"
+    )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     # webui command
@@ -281,7 +337,7 @@ async def run_cli() -> None:
     webui_parser.add_argument("--port", type=int, default=8080, help="Port for streamlit web UI")
     webui_parser.set_defaults(func=run_webui)
 
-    # fuzz command (keeps similar args to original fuzzyai fuzz)
+    # fuzz parser (defer heavy provider inspection until now)
     fuzz_parser = subparsers.add_parser("fuzz", help="Run the fuzzer (in-process) and output deterministic JSON")
     fuzz_parser.set_defaults(func=run_fuzzer)
 
@@ -291,16 +347,26 @@ async def run_cli() -> None:
     fuzz_parser.add_argument("-i", "--attack_id", help="Load previous attack id", type=str, default=None)
     fuzz_parser.add_argument("-C", "--configuration_file", help="Load fuzzer arguments from JSON configuration file", type=open, action=LoadFromFile)
 
-    # create models help string (same behavior)
-    models: dict[LLMProvider, list[str]] = {}
-    for provider in LLMProvider:
-        supported_models = llm_provider_fm[provider].get_supported_models()
-        if isinstance(supported_models, str):
-            models.setdefault(provider, []).append(supported_models)
-            continue
-        for model in llm_provider_fm[provider].get_supported_models():
-            models.setdefault(provider, []).append(model)
+    # retrieve providers/models lazily to build the help string (this can still import provider modules
+    # but it happens during CLI invocation rather than module import)
+    try:
+        providers_mod = _lazy("zynq.llm.providers.base")
+        llm_provider_fm = getattr(providers_mod, "llm_provider_fm")
+        enums_mod = _lazy("zynq.llm.providers.enums")
+        LLMProvider = getattr(enums_mod, "LLMProvider")
 
+        models: dict[LLMProvider, list[str]] = {}
+        for provider in LLMProvider:
+            supported_models = llm_provider_fm[provider].get_supported_models()
+            if isinstance(supported_models, str):
+                models.setdefault(provider, []).append(supported_models)
+                continue
+            for model in llm_provider_fm[provider].get_supported_models():
+                models.setdefault(provider, []).append(model)
+
+    except Exception:
+        # if provider registry can't be loaded (e.g., missing heavy deps), provide a fall-back help.
+        models = {}
     models_help = ""
     for provider_name, model_name in models.items():
         for model in model_name:

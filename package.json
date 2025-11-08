@@ -1,0 +1,29 @@
+{
+  "name": "fuzzyai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "hardhat.config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyberark/FuzzyAI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cyberark/FuzzyAI/issues"
+  },
+  "homepage": "https://github.com/cyberark/FuzzyAI#readme",
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "dotenv": "^17.2.3",
+    "ethers": "^5.8.0",
+    "hardhat": "^2.27.0"
+  }
+}

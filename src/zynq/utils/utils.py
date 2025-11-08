@@ -4,7 +4,8 @@ import subprocess
 from datetime import datetime
 from typing import Any, Dict, Optional, Type, Union
 
-from tabulate import tabulate
+# Removed top-level tabulate import to avoid heavy import at module load
+# from tabulate import tabulate
 
 from zynq.llm.providers.base import BaseLLMProvider, llm_provider_fm
 from zynq.llm.providers.enums import LLMProvider
@@ -58,7 +59,7 @@ def extract_json(s: str) -> Optional[dict[str, Any]]:
     # Find the JSON substring
     start_pos = s.find("{")
     end_pos = s.find("}", start_pos) + 1  # Include the closing brace
-    if end_pos == -1:
+    if end_pos == 0:
         logger.error("Error extracting potential JSON structure")
         logger.error(f"Input:\n {s}")
         return None
@@ -77,6 +78,76 @@ def extract_json(s: str) -> Optional[dict[str, Any]]:
         logger.error(f"Extracted:\n {json_str}")
         return None
 
+
+# -------- lazy tabulate loader & fallback --------
+import importlib
+from typing import Iterable, List
+
+def _load_tabulate():
+    """
+    Lazy-load tabulate. Returns a callable with same-ish signature as tabulate(rows, headers=..., tablefmt=...).
+    If 'tabulate' package is not available, returns a small text-table fallback.
+    """
+    try:
+        tab_mod = importlib.import_module("tabulate")
+        return getattr(tab_mod, "tabulate")
+    except Exception:
+        logger.debug("tabulate not available; using fallback implementation")
+
+        def _fallback(rows: Iterable[Iterable[Any]], headers: List[str] | None = None, tablefmt: str = "plain", **kwargs) -> str:
+            rows_list = list(rows)
+            if headers is None:
+                # infer headers as empty columns if none provided
+                if rows_list:
+                    col_count = max(len(r) for r in rows_list)
+                    headers_local = ["" for _ in range(col_count)]
+                else:
+                    headers_local = []
+            else:
+                headers_local = list(headers)
+
+            col_count = len(headers_local)
+            # compute column widths
+            if rows_list:
+                for r in rows_list:
+                    if len(r) > col_count:
+                        # extend headers_local to match
+                        headers_local.extend([""] * (len(r) - col_count))
+                        col_count = len(headers_local)
+
+            cols = []
+            for i in range(col_count):
+                col = []
+                if headers_local:
+                    col.append(str(headers_local[i]) if i < len(headers_local) else "")
+                for r in rows_list:
+                    col.append(str(r[i]) if i < len(r) else "")
+                cols.append(col)
+            widths = [max(len(x) for x in col) if col else 0 for col in cols]
+
+            def fmt_row(row):
+                out = []
+                for i in range(col_count):
+                    v = str(row[i]) if i < len(row) else ""
+                    out.append(v.ljust(widths[i]))
+                return " | ".join(out)
+
+            lines = []
+            if headers_local:
+                lines.append(fmt_row(headers_local))
+                lines.append("-+-".join("-" * w for w in widths))
+            for r in rows_list:
+                lines.append(fmt_row(r))
+            return "\n".join(lines)
+
+        return _fallback
+
+def _tabulate():
+    """Return a callable like tabulate(rows, headers=..., tablefmt=...)."""
+    return _load_tabulate()
+# -------- end lazy tabulate loader --------
+
+
 def print_report(report: FuzzerResult) -> None:
     headers = ["prompt", "model", "attack method", "adversarial prompt", "response", "jailbreak?"]
     GREEN = "\033[92m"
@@ -94,9 +165,12 @@ def print_report(report: FuzzerResult) -> None:
                 table_data.append([successful_prompts.original_prompt, model_entry.name, entry.attack_mode, successful_prompts.harmful_prompt, successful_prompts.harmful_response, green])
             
     try:
-        print(tabulate(table_data, headers, tablefmt="simple_grid", maxcolwidths=[40, 20, 20, 40, 50, 10], colalign=("center", "center", "center", "center", "center", "center")))
+        # Use lazy loader for tabulate
+        tab = _tabulate()
+        print(tab(table_data, headers, tablefmt="simple_grid", maxcolwidths=[40, 20, 20, 40, 50, 10], colalign=("center", "center", "center", "center", "center", "center")))
     except Exception as e:
-        logger.error("Can't generating report")
+        logger.error("Can't generating report: %s", e)
+
 
 # Define the template with double curly braces for JavaScript/CSS and single for Python
 REPORT_TEMPLATE = '''
@@ -388,6 +462,7 @@ REPORT_TEMPLATE = '''
 </body>
 </html>
 '''
+
 
 def generate_report(report: FuzzerResult) -> None:
     try:
